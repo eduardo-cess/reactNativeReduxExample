@@ -1,13 +1,19 @@
-const people = [
-  { name: 'Nader', age: 36 },
-  { name: 'Amanda', age: 24 },
-  { name: 'Jason', age: 44 }
-]
+function getMoviesFromApiAsync() {
+  return fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+      return responseJson;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 export default () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      return resolve(people)
+      return resolve(getMoviesFromApiAsync())
     }, 3000)
   })
 }

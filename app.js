@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableHighlight, View, Text, StyleSheet } from 'react-native'
+import { TouchableHighlight, View, Text, StyleSheet ,ScrollView} from 'react-native'
 
 import { connect } from 'react-redux'
 import { fetchData } from './actions'
@@ -21,21 +21,20 @@ const App = (props) => {
       <TouchableHighlight style={button} onPress={() => props.fetchData()}>
         <Text style={buttonText}>Load Data</Text>
       </TouchableHighlight>
-      <View style={mainContent}>
+      <ScrollView style={mainContent}>
       {
         props.appData.isFetching && <Text>Loading</Text>
       }
       {
         props.appData.data.length ? (
-          props.appData.data.map((person, i) => {
+          props.appData.data.map((post, i) => {
             return <View key={i} >
-              <Text>Name: {person.name}</Text>
-              <Text>Age: {person.age}</Text>
+              <Text>Title {i}: {post.title}</Text>
             </View>
           })
         ) : null
       }
-      </View>
+      </ScrollView>
     </View>
   )
 }

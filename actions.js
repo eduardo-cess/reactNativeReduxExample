@@ -1,32 +1,14 @@
-import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAILURE } from './constants'
+import { FETCH_DATA } from './constants'
+import axios from 'axios'
 import getPeople from './api'
 
-export function getData() {
-    return {
-        type: FETCHING_DATA
-    }
-}
-
-export function getDataSuccess(data) {
-    return {
-        type: FETCHING_DATA_SUCCESS,
-        data,
-    }
-}
-
-export function getDataFailure() {
-    return {
-        type: FETCHING_DATA_FAILURE
-    }
-}
+//const REQUEST_URL = 'https://jsonplaceholder.typicode.com';
 
 export function fetchData() {
-    return (dispatch) => {
-        dispatch(getData())
-        getPeople()
-            .then((data) => {
-                dispatch(getDataSuccess(data))
-            })
-            .catch((err) => console.log('err:', err))
-    }
+   // var request = axios.get(`${REQUEST_URL}/posts`);
+    //console.log(request)
+  return {
+    type: FETCH_DATA,
+    payload: getPeople()
+  }
 }
